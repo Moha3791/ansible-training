@@ -245,4 +245,4 @@ mentionnée dans la commande.
 ```
 
 ---
-[Next Lab ->](Lab\ 3\ -\ playbooks.md)
+[Next Lab ->](./Lab\ 3\ -\ playbooks.md)
