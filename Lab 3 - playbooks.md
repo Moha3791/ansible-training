@@ -240,5 +240,5 @@ essayez avec:
 Ecrivez un playbook `mysql.yml` qui installe le serveur MySQL sur les noeuds Ubuntu,
 et crée un utilisateur **admin** et une base de données **sitedb**
 
---
+---
 [Next Lab ->](Lab\ 4\ -\ Variables.md)

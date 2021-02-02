@@ -317,7 +317,7 @@ Exécutez-le pour voir comment les **facts** sont imprimés:
 ```
 [master]$ ansible-playbook facts.yml
 ```
-```json
+```
 PLAY [Output facts within a playbook]
 *********************************
 TASK [Gathering Facts]
@@ -346,3 +346,6 @@ centos03 : ok=2 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 ```
 Notez comment le module **setup** a été appelé implicitement par
 Ansible sous le nom de tâche "Gathering Facts".
+
+---
+[Next Lab ->](Lab\ 5\ -\ Contrôle\ d\’Exécution.md)

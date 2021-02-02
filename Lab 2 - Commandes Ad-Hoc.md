@@ -244,5 +244,5 @@ mentionnée dans la commande.
  ls /tmp
 ```
 
---
+---
 [Next Lab ->](Lab\ 3\ -\ playbooks.md)
