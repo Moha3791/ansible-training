@@ -24,15 +24,15 @@ Les Playbooks sont des fichiers texte écrits au format YAML et ont donc
 besoin de:
 
 -   commencer avec trois tirets (\-\-\-)
--   Indentation correcte en utilisant des espaces et non des tabulations!
+-   Indentation correcte en utilisant des espaces et **non des tabulations**!
 
 Il y a quelques concepts importants:
 
--   hosts: les hôtes gérés pour effectuer les tâches
--   tasks: les opérations à effectuer en appelant les modules Ansible et
+-   **hosts**: les hôtes gérés pour effectuer les tâches
+-   **tasks**: les opérations à effectuer en appelant les modules Ansible et
     en leur transmettant les options nécessaires.
 
--   become: l’escalade de privilèges dans Playbooks, identique à
+-   **become**: l’escalade de privilèges dans les Playbooks, identique à
     l’utilisation de -b dans la commande ad-hoc.
 
 L'ordre des contenus dans un Playbook est important, car Ansible exécute
@@ -46,7 +46,7 @@ modifications aux hôtes.
 La plupart des modules Ansible sont idempotents, il est donc
 relativement facile de s’assurer que cela est vrai.
 
-Essayez d'éviter les modules `shell` et `raw` dans Playbooks.
+Essayez d'éviter les modules `shell` et `raw` dans les Playbooks.
 Comme ils prennent des commandes arbitraires, il est très facile de se
 retrouver avec des Playbooks non idempotents avec ces modules.
 
@@ -60,7 +60,7 @@ Apache en trois étapes:
 
 2.  Deuxième étape: Activer / démarrer le **service apache2**
 
-3.  Troisième étape: créer un fichier index.html
+3.  Troisième étape: créer un fichier **index.html**
 
 ### Playbook: Install Apache
 
@@ -68,7 +68,7 @@ Ce Playbook vérifie que le paquet contenant le serveur Web Apache est
 installé sur **centos01**. Vous devez évidemment utiliser l'escalade de
 privilèges pour installer un package ou exécuter toute autre tâche
 nécessitant des autorisations `root`. Cela se fait dans le Playbook avec
-**become: yes**.
+**`become: yes`**.
 
 Sur **master** en tant qu'utilisateur `vagrant`, créez le fichier
 ~/ansible/apache.yml avec le contenu suivant:
@@ -87,9 +87,9 @@ Sur **master** en tant qu'utilisateur `vagrant`, créez le fichier
 Cela montre l’un des points forts de Ansible: la syntaxe du Playbook est
 facile à lire et à comprendre. Dans ce playbook:
 
--   Un nom est donné à la `play`
--   L'hôte cible et l'escalade des privilèges sont configurées
--   Une tâche est définie et nommée, elle utilise ici le module "yum"
+-   Un nom est donné à la **play*
+-   Les hôtes cibles et l'escalade des privilèges sont configurées
+-   Une tâche est définie et nommée, elle utilise ici le module `yum`
     avec les options nécessaires.
 
 ### Exécution du playbook
@@ -235,3 +235,10 @@ essayez avec:
 -   L'option **-v** fournit la sortie par défaut.
 -   L'option **-vv** ajoute un peu plus d'informations.
 -   L'option **-vvv** ajoute beaucoup plus d'informations.
+
+## Challenge
+Ecrivez un playbook `mysql.yml` qui installe le serveur MySQL sur les noeuds Ubuntu,
+et crée un utilisateur **admin** et une base de données **sitedb**
+
+--
+[Next Lab ->](Lab\ 4\ -\ Variables.md)

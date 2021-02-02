@@ -26,9 +26,9 @@ fonction liée à `copy` / `file` / `template` dans Ansible
 ```markdown
 |     Nom d'hôte       |     Adresse IP      |     OS                                    |     Objectif               |
 |----------------------|---------------------|-------------------------------------------|----------------------------|
-|     server.local     |     192.168.1.10    |     CentOS 7 / Ubuntu 18.04 / Debian 9    |     Machine de contrôle    |
-|     node1.local      |     192.168.1.20    |     CentOS 7                              |     Nœud géré 1            |
-|     node2.local      |     192.168.1.30    |     Ubuntu 18.04                          |     Nœud géré 2            |
+|     server.local     |     10.0.0.10    |     CentOS 7 / Ubuntu 18.04 / Debian 9    |     Machine de contrôle    |
+|     node1.local      |     10.0.0.21    |     CentOS 7                              |     Nœud géré 1            |
+|     node2.local      |     10.0.0.31    |     Ubuntu 18.04                          |     Nœud géré 2            |
 ```
 
 ## Installer Ansible sur CentOS 7 / RHEL 7 / Ubuntu 18.04 / 16.04 et Debian 9
@@ -36,14 +36,13 @@ fonction liée à `copy` / `file` / `template` dans Ansible
 
 ### Configuration de la machine de contrôle
 
-Pour installer Ansible, nous devrons [***activer le référentiel EPEL sur
+1. Pour installer Ansible, nous devrons [***activer le référentiel EPEL sur
 CentOS 7 / RHEL7***](https://www.itzgeek.com/how-tos/linux/centos-how-tos/enable-epel-repository-for-centos-7-rhel-7.html) .
 
-```shell
+```
 ### CentOS 7 ###
 
-yum install -y
-https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 ### RHEL 7 ###
 
@@ -64,9 +63,9 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys
 echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" | sudo tee -a /etc/apt/sources.list.d/ansible.list
 sudo apt-get update
 ```
-Installez Ansible.
+2. Installez Ansible.
 
-```shell
+```
 ### CentOS 7 / RHEL 7 & Fedora 28 ###
 
 yum install -y ansible
@@ -135,8 +134,8 @@ la machine distante.
 Une fois que vous avez configuré la communication sans mot de passe,
 vérifiez-la.
 ```
-$ ssh user@192.168.1.20
-$ ssh user@192.168.1.30
+$ ssh vagrant@10.0.0.21
+$ ssh vagrant@10.0.0.31
 ```
 Vous devriez maintenant pouvoir vous connecter à la machine distante
 sans mot de passe.
@@ -175,16 +174,16 @@ vi /etc/ansible/hosts
 sudo nano /etc/ansible/hosts
 ```
 Mettez un ou plusieurs systèmes distants et groupez-les. Ici, on
-ajoute les deux machines au groupe `demo-servers`.
+ajoute les deux machines au groupe `demo_servers`.
 
 Les groupes sont utilisés pour classer les systèmes pour un usage
 particulier. Si vous ne spécifiez aucun groupe, ils agiront comme des
 hôtes non groupés.
 ```
-[demo-servers]
+[demo_servers]
 
-10.0.0.20
-10.0.0.30
+10.0.0.21
+10.0.0.31
 ```
 ## Premières commandes
 
@@ -205,10 +204,10 @@ ansible all -u vagrant -m ping
 ```
 **OR**
 
-**# Only demo-servers group - "vagrant" est l'utilisateur du nœud géré
+**# Only demo_servers group - "vagrant" est l'utilisateur du nœud géré
 (sans mot de passe)**
 ```
-ansible demo-servers -u vagrant -m ping
+ansible demo_servers -u vagrant -m ping
 ```
 **OR**
 
@@ -219,12 +218,12 @@ ansible -m ping all -u vagrant --ask-pass
 ```
 **Output:**
 ```
-192.168.1.20 | SUCCESS => {
+10.0.0.21 | SUCCESS => {
 "changed": faux,
 "ping": "pong"
 }
 
-192.168.1.30 | SUCCESS => {
+10.0.0.31 | SUCCESS => {
 "changed": false,
 "ping": "pong"
 }
@@ -236,3 +235,6 @@ d'hôtes distantes.
 De la même manière, nous pouvons utiliser différents modules
 avec la  commande **ansible** , vous pouvez trouver les modules
 disponibles [***ici***](https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html) .
+
+--
+[Next Lab ->](Lab\ 2\ -\ Commandes\ Ad-Hoc.md)

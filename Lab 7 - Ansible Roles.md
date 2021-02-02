@@ -132,19 +132,19 @@ De plus, vous pouvez visiter Ansible Galaxy via votre navigateur Web et
 rechercher manuellement des rôles pour effectuer diverses tâches, comme
 indiqué par le tableau de bord.
 
-![media/image3.png](media/image3.png){width="6.5in" height="2.611111111111111in"}
+![media/image3.png](media/image3.png)
 
 Par exemple, pour rechercher un rôle tel que elasticsearch, cliquez sur
 l'option « Monitoring » et recherchez le rôle comme indiqué.
 
-![media/image2.png](media/image2.png){width="6.5in" height="3.736111111111111in"}
+![media/image2.png](media/image2.png)
 
 Ansible Galaxy permet aux utilisateurs d'installer plus facilement les
 meilleurs rôles en répertoriant les rôles les plus populaires et les
 plus téléchargés. Pour obtenir plus d'informations sur un rôle
 spécifique, cliquez simplement dessus.
 
-![media/image4.png](media/image4.png){width="6.5in" height="3.611111111111111in"}
+![media/image4.png](media/image4.png)
 
 Vérifiez les informations de rôle sur Ansible Galaxy
 

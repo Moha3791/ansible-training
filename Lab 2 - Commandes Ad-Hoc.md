@@ -14,10 +14,6 @@ cible. Ces commandes sont présentes dans /usr/bin/ansible
 ## Créons un espace de travail pour nos commandes ad-hoc.
 Veuillez noter que certaines des choses que nous allons créer seront abordées plus tard dans ce cours.
 
-Assurez-vous que vous vous trouvez dans le ** dossier lab2-adhoc ** pour ce laboratoire.
-```
-cd \~/ansible_labs/lab2-ad-hoc
-```
 ## Créons maintenant une configuration et un fichier d'inventaire pour ansible
 
 Copiez et collez ce qui suit pour créer un fichier *Ansible Config*. Vous pouvez également le créer vous-même dans un éditeur de fichiers tel que vim.
@@ -35,7 +31,7 @@ Copiez et collez ce qui suit pour créer un fichier d'inventaire.
 ```
 cat > hosts <<EOF
 
-[demo-servers]
+[demo_servers]
 centos01 ansible_host=10.0.0.21
 ubuntu01 ansible_host=10.0.0.31
 
@@ -216,9 +212,9 @@ fichier d'une source vers une destination pour un groupe d'hôtes défini
 dans le fichier d'inventaire. Si la sortie avec le paramètre «changed»
 est «true», le fichier a été copié vers la destination.
 ```
-ansible all -m copy -a 'src=file1.txt dest=/home/vagrant/Desktop/ owner=root mode=0644' -u root --become
+ansible all -m copy -a 'src=file1.txt dest=/home/vagrant/Desktop/ owner=root mode=0644' --become
 ```
-Exécutez la commande ci-dessous pour vérifier si le module de copie a
+Exécutez la commande ci-dessous pour vérifier si le module `copy` a
 fonctionné correctement ou non. Le fichier copié doit arriver à la
 destination mentionnée dans la commande précédente.
 ```
@@ -227,7 +223,7 @@ ls -l /home/vagrant/Desktop
 ### le module fetch
 
 La commande ad-hoc ci-dessous est utilisée pour télécharger un
-fichier à partir d'un hôte défini dans la commande (l’inverse de copy).
+fichier à partir d'une hôte définie dans la commande (l’inverse de copy).
 ```
 ansible ubuntu01 -m fetch -a "src=/home/vagrant/ubuntu01.txt dest=/tmp/ flat=yes"
 ```
@@ -247,3 +243,6 @@ mentionnée dans la commande.
 ```
  ls /tmp
 ```
+
+--
+[Next Lab ->](Lab\ 3\ -\ playbooks.md)

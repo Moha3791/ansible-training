@@ -42,7 +42,7 @@ vous pourrez commencer à écrire vos plays.
 
 Pour vérifier le cryptage du fichier, utilisez la commande *cat*.
 
-![](media/vault2.png){width="6.5in" height="1.4861111111111112in"}
+![](media/vault2.png)
 
 ### Afficher un fichier crypté dans Ansible
 
@@ -103,7 +103,7 @@ encrypt_string* comme indiqué ci-dessous.
 ```
 $ ansible-vault encrypt_string
 ```
-![](media/vault3.png){width="6.5in" height="2.0in"}
+![](media/vault3.png)
 
 Ansible Vault vous demandera le mot de passe et vous demandera plus tard
 de le confirmer. Ensuite, tapez la valeur de chaîne que vous souhaitez
@@ -114,7 +114,7 @@ Ceci peut être réalisé en une seule ligne comme indiqué ci-dessous.
 ```
 $ ansible-vault encrypt_string 'string' --name 'variable_name'
 ```
-![](media/vault4.png){width="6.5in" height="1.8472222222222223in"}
+![](media/vault4.png)
 
 **Déchiffrer un fichier de Playbook pendant l'exécution**
 
@@ -123,8 +123,7 @@ pendant l'exécution, utilisez l'option --ask-vault-pass comme illustré.
 ```
 $ ansible-playbook deploy.yml --ask-vault-pass
 ```
-![](media/vault5.png){width="5.427083333333333in"
-height="0.5104166666666666in"}
+![](media/vault5.png)
 
 Cela décrypte tous les fichiers utilisés dans le playbook à condition
 qu'ils ont été cryptés à l'aide du même mot de passe.
