@@ -43,14 +43,15 @@ tableau est appelé check_services. Créez ce Playbook en tant que
 - name: Loop demo
   hosts: centos01
   vars:
-  - httpd
-  - sshd
+    check_services:
+    - httpd
+    - sshd
   tasks:
   - name: Check if service is started
     service:
       name: "{{ item }}"
       state: started
-      loop:"{{ check\services }}"
+      loop:"{{ check_services }}"
 ```
 
 ### Les Hashs
@@ -58,7 +59,7 @@ Vous pouvez également parcourir une liste de **hashs** pour des données plus
 complexes. Le Playbook suivant montre comment une liste de **hashs** avec
 des paires clé-valeur est transmise au module **user**. Créez
 `loop3.yml` et exécutez-le:
-```
+```yaml
 ---
 - name: Hash demo
   hosts: centos01

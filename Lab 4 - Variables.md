@@ -152,7 +152,7 @@ copier.
   tasks:
   - name: copy index.html
     copy:
-      src: {{ stage }}_index.html
+      src: ""{{ stage }}_index.html"
       dest: /var/www/html/index.html
 ```
 ### Exécutez le Playbook:
