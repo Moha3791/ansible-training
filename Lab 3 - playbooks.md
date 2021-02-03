@@ -87,7 +87,7 @@ Sur **master** en tant qu'utilisateur `vagrant`, créez le fichier
 Cela montre l’un des points forts de Ansible: la syntaxe du Playbook est
 facile à lire et à comprendre. Dans ce playbook:
 
--   Un nom est donné à la **play*
+-   Un nom est donné à la **play**
 -   Les hôtes cibles et l'escalade des privilèges sont configurées
 -   Une tâche est définie et nommée, elle utilise ici le module `yum`
     avec les options nécessaires.
@@ -241,4 +241,4 @@ Ecrivez un playbook `mysql.yml` qui installe le serveur MySQL sur les noeuds Ubu
 et crée un utilisateur **admin** et une base de données **sitedb**
 
 ---
-[Next Lab ->](./Lab\ 4\ -\ Variables.md)
+[Next Lab ->](./Lab%204%20-%20Variables.md)

@@ -241,3 +241,6 @@ curl: (7) Failed connect to 10.0.0.21:80; Connection refused
 <h1>This is a production webserver, take care!</h1>
 </body>
 ```
+
+---
+[Next Lab ->](./Lab%206%20-%20Templates.md)

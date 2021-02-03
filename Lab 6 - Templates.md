@@ -144,3 +144,7 @@ if-else pour filtrer et obtenir certaines valeurs.
 > {% endif %}
 >
 > {% endfor %}
+
+
+---
+[Next Lab ->](./Lab%206%20-%20Ansible%20Roles.md)

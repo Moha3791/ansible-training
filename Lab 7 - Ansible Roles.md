@@ -169,3 +169,7 @@ Les rôles facilitent la réutilisation et le partage des playbooks
 Ansible. De cette façon, ils font gagner beaucoup de temps à
 l'utilisateur en essayant d'écrire beaucoup de code redondant qui aurait
 été utilisé dans d'autres tâches d'administration système.
+
+
+---
+[Next Lab ->](./Lab%206%20-%20Ansible%20Vault.md)

@@ -170,7 +170,7 @@ tant qu'utilisateur non root avec des privilèges root.
 L'option **--become** donne les privilèges root et l'option **-K** demande le mot
 de passe.
 ```
-ansible ubuntu -m shell -a 'fdisk -l' -u ubuntu --become -K
+ansible ubuntu -m shell -a 'fdisk -l' -u ubuntu --become -k
 ```
 **Exemple d’Output:**
 ```
@@ -245,4 +245,4 @@ mentionnée dans la commande.
 ```
 
 ---
-[Next Lab ->](./Lab\ 3\ -\ playbooks.md)
+[Next Lab ->](./Lab%203%20-%20playbooks.md)
