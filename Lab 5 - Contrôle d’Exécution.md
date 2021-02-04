@@ -70,9 +70,9 @@ des paires clé-valeur est transmise au module **user**. Créez
       name: "{{ item.name }}"
       state: present
       groups: "{{ item.groups }}"
-      loop:
-      - { name: 'jane', groups: 'wheel' }
-      - { name: 'joe', groups: 'root' }
+    loop:
+    - { name: 'jane', groups: 'wheel' }
+    - { name: 'joe', groups: 'root' }
 ```
 
 # Conditionnels Ansible
