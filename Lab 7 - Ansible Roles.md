@@ -163,6 +163,45 @@ Pour lister les rôles installés, exécutez simplement.
 ```
 $ ansible-galaxy list
 ```
+
+## Inclure un Ansible Role dans une tâche
+Vous pouvez réutiliser des rôles de manière dynamique n'importe où dans la section des tâches d'un play en utilisant `include_role`. Alors que les rôles ajoutés dans la section **roles:** s'exécutent avant toute autre tâche dans un playbook, les rôles inclus s'exécutent dans l'ordre dans lequel ils sont définis. S'il existe d'autres tâches avant une tâche `include_role`, les autres tâches seront exécutées en premier.
+
+Pour inclure un rôle:
+
+```YAML
+---
+- hosts: webservers
+  tasks:
+    - name: Print a message
+      debug:
+        msg: "this task runs before the example role"
+
+    - name: Include the example role
+      include_role:
+        name: example
+
+    - name: Print a message
+      debug:
+        msg: "this task runs after the example role"
+
+```
+Vous pouvez inclure conditionnellement un rôle:
+```yaml
+---
+- hosts: webservers
+  tasks:
+    - name: Include the some_role role
+      include_role:
+        name: some_role
+      when: "ansible_facts['os_family'] == 'RedHat'"
+```
+
+###Challenge
+Créez un playbook pour installer **Apache** dans tous les noeuds CentOS et Ubuntu
+en utilisant les Ansible Roles,
+Vous aurez besoin de considérer le *fact* `os_family` pour décider quel rôle à inclure.
+
 ##Conclusion
 
 Les rôles facilitent la réutilisation et le partage des playbooks

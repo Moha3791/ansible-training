@@ -1,0 +1,37 @@
+---
+- name: install mysql
+  hosts: ubuntu
+  tasks:
+  - name: Install python-mysqldb
+    apt: python-mysqldb update_cache=yes cache_valid_time=3600 state=present
+    become: yes
+
+  - name: Install mysql-server
+    apt: name=mysql-server update_cache=yes cache_valid_time=3600 state=present
+    become: yes
+
+  - name: Start the MySQL service
+    become: yes
+    service:
+      name: mysql
+      state: started
+      enabled: true
+
+  - name: update mysql root password for all root accounts
+    become: yes
+    mysql_user:
+      name: root
+      host: "localhost"
+      password: "password"
+      login_user: root
+      login_password: "password"
+      check_implicit_admin: yes
+      priv: "*.*:ALL,GRANT"
+
+  - name: create database
+    become: yes
+    mysql_db:
+      name: mydb
+      login_user: root
+      login_password: "password"
+      

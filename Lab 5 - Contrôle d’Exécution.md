@@ -25,14 +25,14 @@ itère. Ils sont définis en fournissant une liste d'éléments au mot-clé
 ---
 - name: Loop demo
   hosts: centos01
- tasks:
- - name: Check if service is started
-   service:
-     name: "{{ item }}"
-     state: started
-     loop:
-     - httpd
-     - sshd
+  tasks:
+  - name: Check if service is started
+    service:
+      name: "{{ item }}"
+      state: started
+    loop:
+    - httpd
+    - sshd
 ```
 La liste des éléments à parcourir peut également être fournie sous forme
 de liste dans la section **vars** ou dans un fichier. Dans cet exemple, le
@@ -51,7 +51,7 @@ tableau est appelé check_services. Créez ce Playbook en tant que
     service:
       name: "{{ item }}"
       state: started
-      loop:"{{ check_services }}"
+    loop: "{{ check_services }}"
 ```
 
 ### Les Hashs

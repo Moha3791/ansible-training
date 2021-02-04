@@ -152,7 +152,7 @@ copier.
   tasks:
   - name: copy index.html
     copy:
-      src: ""{{ stage }}_index.html"
+      src: "{{ stage }}_index.html"
       dest: /var/www/html/index.html
 ```
 ### Exécutez le Playbook:
@@ -253,7 +253,7 @@ Le Playbook suivant montre cette utilisation, créez-le en tant que
     apt:    
       name: apache2
       state: present
-      register: install_result
+    register: install_result
 
   - debug: var=install_result
 ```
