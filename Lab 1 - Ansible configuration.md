@@ -405,11 +405,12 @@ ansible server1:server3 -m ping -i hosts
 Le tableau suivant contient quelques exemples différents de modèles courants que
 vous pouvez utiliser lors de l'exécution de commandes et de playbooks avec Ansible:
 
-Modèle	       Objectif de résultat
-all	            Tous les hôtes de votre fichier d'inventaire
-host1	          Un seul hôte (host1)
-host1:host2	    Les deux host1 et host2
-group1	        Un seul groupe (group1)
-group1:group2	  Tous les serveurs dans group1 et group2
-group1:\&group2	Seuls les serveurs qui sont à la fois dans group1 et group2
-group1:\!group2	Serveurs en group1 sauf ceux également en group2
+| Modèle          | Objectif de résultat                                        |
+|-----------------|-------------------------------------------------------------|
+| all             | Tous les hôtes de votre fichier d'inventaire                |
+| host1           | Un seul hôte (host1)                                        |
+| host1:host2     | Les deux host1 et host2                                     |
+| group1          | Un seul groupe (group1)                                     |
+| group1:group2   | Tous les serveurs dans group1 et group2                     |
+| group1:\&group2 | Seuls les serveurs qui sont à la fois dans group1 et group2 |
+| group1:\!group2 | Serveurs en group1 sauf ceux également en group2            |
