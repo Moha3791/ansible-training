@@ -24,15 +24,14 @@ fonction liée à `copy` / `file` / `template` dans Ansible
 
 
 ```markdown
-|     Nom d'hôte       |     Adresse IP      |     OS                                    |     Objectif               |
-|----------------------|---------------------|-------------------------------------------|----------------------------|
+|     Nom d'hôte       |    Adresse IP    |     OS                                    |     Objectif               |
+|----------------------|------------------|-------------------------------------------|----------------------------|
 |     server.local     |     10.0.0.10    |     CentOS 7 / Ubuntu 18.04 / Debian 9    |     Machine de contrôle    |
 |     node1.local      |     10.0.0.21    |     CentOS 7                              |     Nœud géré 1            |
 |     node2.local      |     10.0.0.31    |     Ubuntu 18.04                          |     Nœud géré 2            |
 ```
 
 ## Installer Ansible sur CentOS 7 / RHEL 7 / Ubuntu 18.04 / 16.04 et Debian 9
-
 
 ### Configuration de la machine de contrôle
 
