@@ -440,13 +440,17 @@ Commencer par modifier la section **defaults**
 ```
 [defaults]
 ```
+Spécifier le fichier hosts comme inventaire
+```
+inventory = hosts
+```
 Arrêter la verification de la clés pour les nouveaux noeuds
 ```
 host_key_checking = False
 ```
 récupérer le temps passé dans l'execution des tâches
 ```
-callback_whitelist = profile_tasks
+callback_whitelist = timer
 ```
 Activer la parallélisation
 ```
@@ -467,5 +471,8 @@ pipelining = True
 ```
 Ajuster les arguments de connexion SSH
 ```
-ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s PreferredAuthentications=publickey
+ssh_args = -o ControlMaster=auto -o ControlPersist=60s
 ```
+
+
+[Next Lab ->](./Lab%202%20-%20Commandes%20Ad-Hoc.md)

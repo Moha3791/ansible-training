@@ -19,27 +19,53 @@ Veuillez noter que certaines des choses que nous allons créer seront abordées 
 Copiez et collez ce qui suit pour créer un fichier *Ansible Config*. Vous pouvez également le créer vous-même dans un éditeur de fichiers tel que vim.
 ```
 cat > ansible.cfg <<EOF
-
 [defaults]
 inventory = hosts
 host_key_checking = False
-deprecation_warnings=False
-
+callback_whitelist = timer
+forks = 5
+gathering = explicit
+[ssh_connection]
+pipelining = True
+ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s -o
 EOF
 ```
 Copiez et collez ce qui suit pour créer un fichier d'inventaire.
 ```
 cat > hosts <<EOF
 
-[demo_servers]
-centos01 ansible_host=10.0.0.21
-ubuntu01 ansible_host=10.0.0.31
+[web_dev]
+server1 ansible_host=10.0.0.21
 
-[ubuntu]
-ubuntu01 ansible_host=10.0.0.31
+[web_prod]
+server2 ansible_host=10.0.0.22
 
-[centos]
-centos01 ansible_host=10.0.0.21
+[db_dev]
+server3 ansible_host=10.0.0.31
+
+[db_prod]
+server4 ansible_host=10.0.0.32
+
+[webservers:children]
+web_dev
+web_prod
+
+[dbservers:children]
+db_dev
+db_prod
+
+[development:children]
+web_dev
+db_dev
+
+[production:children]
+web_prod
+db_prod
+
+[all:vars]
+ansible_user=vagrant
+
+EOF
 ```
 ## Commandes Ad-hoc
 
@@ -69,8 +95,8 @@ ansible all -m ping
 }
 ```
 La commande mentionnée ci-dessous exécute le module `setup` (Gather facts)
-sur un groupe d'hôtes, l’option **-a** ou **--args** sert à
-définir les arguments du module exécuté.
+sur un groupe d'hôtes, l’option **-a** ou **--args** sert à définir les arguments
+du module exécuté.
 ```
 ansible all -m setup -a "filter=ansible_distribution*"
 ```
@@ -151,7 +177,7 @@ activer la connexion par mot de passe tout d’abord. (suivez ce guide en
 cas de besoin:
 **[*https://help.thorntech.com/docs/sftp-gateway-classic/enable-password-login/*](https://help.thorntech.com/docs/sftp-gateway-classic/enable-password-login/)**)
 ```
-ansible ubuntu -m ping -u ubuntu --ask-pass
+ansible dbservers -m ping -u ubuntu --ask-pass
 ```
 **Exemple d’output:**
 ```
@@ -170,7 +196,7 @@ tant qu'utilisateur non root avec des privilèges root.
 L'option **--become** donne les privilèges root et l'option **-K** demande le mot
 de passe.
 ```
-ansible ubuntu -m shell -a 'fdisk -l' -u ubuntu --become -k
+ansible dbservers -m shell -a 'fdisk -l' -u ubuntu --become -k
 ```
 **Exemple d’Output:**
 ```

@@ -236,4 +236,4 @@ avec la  commande **ansible** , vous pouvez trouver les modules
 disponibles [***ici***](https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html) .
 
 ---
-[Next Lab ->](./Lab%202%20-%20Commandes%20Ad-Hoc.md)
+[Next Lab ->](./Lab%201%20-%20Ansible%20configuration.md)
