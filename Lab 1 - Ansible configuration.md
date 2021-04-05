@@ -414,3 +414,58 @@ vous pouvez utiliser lors de l'exécution de commandes et de playbooks avec Ansi
 | group1:group2   | Tous les serveurs dans group1 et group2                     |
 | group1:\&group2 | Seuls les serveurs qui sont à la fois dans group1 et group2 |
 | group1:\!group2 | Serveurs en group1 sauf ceux également en group2            |
+
+
+# Personnaliser la Configuration de Ansible
+Grâce à un modèle de surcharge simple, il est possible de donner à Ansible un fichier
+de configuration ansible.cfg dans lequel vous pouvez reconfigurer partiellement Ansible
+pour vos besoins.
+
+Ansi, qu’il s’agisse de spécifier un hostfile alternatif pour ne plus avoir à préciser -i meshosts à chaque lancement, ou bien supprimer les inutiles fichiers .retry, ou toute
+autre option Ansible, vous n’avez bien souvent qu’à créer un fichier ansible.cfg là ou
+vous lancez vos playbooks pour qu’Ansible aille automatiquement chercher ce fichier
+en premier lors de son démarrage. L’ordre de recherche est celui-ci :
+
+* ANSIBLE_CONFIG (an environment variable)
+* ansible.cfg (in the current directory)
+* .ansible.cfg (in the home directory)
+* /etc/ansible/ansible.cfg
+
+créez le fichier ansible.cfg dans le répertoire courant:
+```
+vi ansible.cfg
+```
+
+Commencer par modifier la section **defaults**
+```
+[defaults]
+```
+Arrêter la verification de la clés pour les nouveaux noeuds
+```
+host_key_checking = False
+```
+récupérer le temps passé dans l'execution des tâches
+```
+callback_whitelist = profile_tasks
+```
+Activer la parallélisation
+```
+forks = 5
+```
+changer le facts gathering en explicite
+```
+gathering = explicit
+```
+
+Modifier la section **ssh_connection**
+```
+[ssh_connection]
+```
+activer le pipeline python pour optimiser le temps d'execution des playbooks
+```
+pipelining = True
+```
+Ajuster les arguments de connexion SSH
+```
+ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s PreferredAuthentications=publickey
+```
