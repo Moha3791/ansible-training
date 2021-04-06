@@ -35,7 +35,7 @@ Le contenu du fichier d'inventaire doit être défini dans **./inventory**, à c
 
 Les modifications apportées au processus d'installation nécessitent maintenant que vous remplissiez tous les champs de mot de passe dans le fichier d'inventaire. Si vous avez besoin de savoir où trouver les valeurs pour celles-ci, elles doivent être:
 
-admin_password='' <- Mot de passe de l'administrateur local de la tour
+admin_password='' <- Mot de passe de l'administrateur local
 pg_password='' <—- Trouvé dans /etc/tower/conf.d/postgres.py
 
 ### Lancer l'installations
@@ -61,3 +61,45 @@ Lorsque Tower est lancé pour la première fois, l'écran d'abonnement s'affiche
 
 Votre copie Tower est maintenant activée
 Pour plus de détails consulter le [guide d'installation](https://docs.ansible.com/ansible-tower/latest/html/quickinstall/index.html).
+# Utiliser Tower
+## Examinez le tableau de bord de Tower
+Le tableau de bord de Tower offre un cadre graphique convivial pour vos besoins d'orchestration. Sur le côté gauche du tableau de bord de Tower se trouve le menu de navigation, dans lequel vous pouvez accéder rapidement à vos projets, inventaires, job templates et jobs.
+
+Cliquez sur l'icône Menu ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/menu-icon.png) en haut de la navigation de gauche et la barre de navigation se développe pour afficher les icônes et les étiquettes; et se réduit pour n'afficher que les icônes. Affichez les étiquettes sans développer le menu en survolant les icônes.
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/nav-bar-various-states.png)
+
+Le tout dernier élément de la barre de navigation est l'icône Paramètres, qui permet d'accéder aux paramètres de configuration de Tower.
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/ug-settings-menu-expanded.png)
+
+La page Paramètres permet aux administrateurs de configurer l'authentification, les travaux, les attributs au niveau du système et de personnaliser l'interface utilisateur. Les versions précédentes d'Ansible Tower (3.2.x et antérieures) fournissent le menu Paramètres en haut de l'interface à côté des boutons utilisateur et de déconnexion. Reportez-vous à la section Configuration de Tower pour plus de détails. De plus, vous pouvez désormais accéder aux informations de licence du produit à partir de cette page.
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/ug-settings-menu-screen.png)
+
+Sur l'écran principal du tableau de bord de Tower, un résumé apparaît indiquant l'état actuel de votre travail . Les résumés des modèles récemment utilisés et des exécutions récentes de travaux sont également disponibles pour examen .
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/home-dashboard.png)
+
+## Configurer l'organisation
+
+Une organisation est un ensemble logique d'utilisateurs, d'équipes, de projets et d'inventaires. Il s'agit de l'objet de plus haut niveau dans la hiérarchie des objets Tower.
+Dans la barre de navigation de gauche, cliquez sur l'icône Organisations (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/organizations-icon.png)).
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/organizations-home-showing-example-organization.png)
+
+Une organisation par défaut a été créée automatiquement et est disponible pour tous les utilisateurs d'Ansible Tower. Il peut être utilisé tel quel ou modifié ultérieurement si nécessaire.
+
+Pour les besoins de ce lab, laissez l'organisation par défaut telle quelle et cliquez sur Enregistrer .
+
+## Ajouter un utilisateur à l'organisation
+Développez les détails des utilisateurs en cliquant sur l' onglet Utilisateurs de l'organisation par défaut que vous venez d'enregistrer (pas dans la barre de navigation de gauche).
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-organizations-click-to-expand-users-section.png)
+
+1. Pour ajouter un utilisateur, cliquez sur le bouton ajouter ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/add-button.png).
+1. Les autres utilisateurs n'ayant pas encore été créés, l'utilisateur «admin» est le seul utilisateur répertorié. Cochez la case en regard de l'utilisateur «admin» pour le sélectionner pour cette organisation. Cela étend la partie inférieure de l'assistant pour attribuer des rôles à l'utilisateur sélectionné.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-organizations-create-user-form.png)
+1. Cliquez dans le menu déroulant pour sélectionner un ou plusieurs rôles pour cet utilisateur.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-organizations-add-admin-for-example-organization-assign-roles.png)
+1. Une fois terminé, cliquez sur Enregistrer .
