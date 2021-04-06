@@ -106,9 +106,9 @@ examinez la sortie:
   become: yes
   tasks:
   - name: Install FTP server if not in production
-  yum:
-    name: vsftpd
-    state: latest
+    yum:
+      name: vsftpd
+      state: latest
     when: stage != "prod"
 ```
 Résultat attendu: la tâche est ignorée sur *centos01* car la variable *stage*

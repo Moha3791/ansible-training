@@ -76,7 +76,7 @@ Sur **master** en tant qu'utilisateur `vagrant`, créez le fichier
 ---
 
 - name: Apache server installed
-  hosts: centos
+  hosts: webservers
   become: yes
   tasks:
   - name: latest Apache version installed
@@ -120,7 +120,7 @@ Le Playbook doit maintenant ressembler à ceci:
 ---
 
 - name: Apache server installed
-  hosts: centos
+  hosts: webservers
   become: yes
   tasks:
   - name: latest Apache version installed
@@ -167,7 +167,7 @@ Sur **master** en tant qu'utilisateur **vagrant**, éditez le fichier
 ---
 
 - name: Apache server installed
-  hosts: centos
+  hosts: webservers
   become: yes
   tasks:
   - name: latest Apache version installed

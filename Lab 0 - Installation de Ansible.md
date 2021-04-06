@@ -1,4 +1,4 @@
-Lab 1 – Installation
+Lab 0 – Installation
 ===
 # Introduction
 

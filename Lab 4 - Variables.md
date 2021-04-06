@@ -57,13 +57,13 @@ créons notre fichier *hosts* contenant la liste des noeuds:
 ```shell
 [master]$ vi hosts
 
-[webserver]
+[webservers]
 centos01 ansible_host=10.0.0.21
 centos02 ansible_host=10.0.0.22
-centos03 ansible_host=10.0.0.23
 
-[prod]
-centos01 ansible_host=10.0.0.21
+[dbservers]
+centos03 ansible_host=10.0.0.31
+centos01 ansible_host=10.0.0.32
 ```
 ### Définir des variables dans les playbooks
 
@@ -88,7 +88,6 @@ Les variables de playbooks peuvent être définies de plusieurs manières:
    >Les variables sont ensuite définies dans ce fichier au format YAML:
 ```
 ---
-
 user: joe
 home: /home/joe
 ```
@@ -106,16 +105,14 @@ $ mkdir {host_vars,group_vars}
 Créez maintenant deux fichiers contenant des définitions de variables
 qui pointent vers un environnement:
 
-- *~/ansible/group_vars/webserver* contenant:
+- *~/ansible/group_vars/webservers* contenant:
 ```
 ---
-
 stage: dev
 ```
 - *~/ansible/host_vars/centos01* , contenant:
 ```
 ---
-
 stage: prod
 ```
 ### Créer des fichiers index.html
@@ -188,7 +185,7 @@ prochains labs.
 Vous avez maintenant toutes les informations pour effectuer les tâches
 suivantes:
 
-1.  Dans le fichier de variables du groupe **webserver**, définissez une
+1.  Dans le fichier de variables du groupe **webservers**, définissez une
     variable **service** par *sshd*.
 
 2.  Dans le fichier de variable hôte de l'hôte **centos01**, définissez
@@ -196,7 +193,7 @@ suivantes:
 
 3.  Créez un playbook `check_service.yml` pour redémarrer un service dont
     le nom est défini par la variable **service**. Rendez-le
-    applicable à toutes hôtes **centos**.
+    applicable à toutes hôtes.
 
 4.  Exécutez le Playbook avec "-v" pour voir Ansible vérifie différents
     services en fonction des variables.
@@ -221,7 +218,7 @@ service: sshd
 
 ---
 - name: Check if service is enabled and started
-  hosts: centos0*
+  hosts: all
   become: yes
   tasks:
   - name: Check service is enabled and started
@@ -246,13 +243,14 @@ Le Playbook suivant montre cette utilisation, créez-le en tant que
 ```yaml
 ---
 - name: Installs a package and prints the result
-  hosts: ubuntu
+  hosts: dbservers
   become: True
   tasks:
   - name: Install the package
     apt:    
-      name: apache2
+      name: mysql-server
       state: present
+      update_cache: yes
     register: install_result
 
   - debug: var=install_result
@@ -307,7 +305,7 @@ utilisant le nom approprié. Créez le Playbook *facts.yml*:
 ```YAML
 ---
 - name: Output facts within a playbook
-  hosts: centos
+  hosts: webservers
   tasks:
   - name: Prints Ansible facts
     debug:
@@ -324,7 +322,6 @@ TASK [Gathering Facts]
 ************************************************
 ok: [centos01]
 ok: [centos02]
-ok: [centos03]
 TASK [Prints Ansible facts]
 *******************************************
 ok: [centos01] => {
@@ -334,15 +331,12 @@ ok: [centos01] => {
 ok: [centos02] => {
 "msg": "The default IPv4 address of slave02 is 10.0.0.22"
 }
-ok: [centos03] => {
-"msg": "The default IPv4 address of slave03 is 10.0.0.23"
-}
+
 PLAY RECAP
 ************************************************************
 
 centos01 : ok=2 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 centos02 : ok=2 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
-centos03 : ok=2 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 ```
 Notez comment le module **setup** a été appelé implicitement par
 Ansible sous le nom de tâche "Gathering Facts".

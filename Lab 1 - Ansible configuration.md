@@ -3,7 +3,7 @@ Lab : Configuration de Ansible
 
 ## Étape 1 - Création d'un fichier d'inventaire personnalisé
 Lors de l'installation, Ansible crée un fichier d'inventaire qui se trouve
-généralement dans /etc/ansible/hosts. Il s'agit de l'emplacement par défaut
+généralement dans `/etc/ansible/hosts`. Il s'agit de l'emplacement par défaut
 utilisé par Ansible lorsqu'un fichier d'inventaire personnalisé n'est pas fourni
 avec l'option **-i**, lors d'un playbook ou de l'exécution d'une commande.
 
@@ -272,13 +272,13 @@ cat hosts
 ```
 ```shell
 # ... contenu éliminé
-server1 ansible_host=10.0.0.21 ansible_user=vagrant
+centos01 ansible_host=10.0.0.21 ansible_user=vagrant
 # ... contenu éliminé
-server2 ansible_host=10.0.0.22 ansible_user=vagrant
+centos02 ansible_host=10.0.0.22 ansible_user=vagrant
 # ... contenu éliminé
-server3 ansible_host=10.0.0.31 ansible_user=ubuntu
+ubuntu01 ansible_host=10.0.0.31 ansible_user=ubuntu
 # ... contenu éliminé
-server4 ansible_host=10.0.0.32 ansible_user=ubuntu
+ubuntu02 ansible_host=10.0.0.32 ansible_user=ubuntu
 # ... contenu éliminé
 ```
 Vous pouvez également créer un groupe pour agréger les hôtes avec des paramètres
@@ -289,13 +289,13 @@ cat hosts
 ```
 ```shell
 # ... contenu éliminé
-server1 ansible_host=10.0.0.21
+centos01 ansible_host=10.0.0.21
 # ... contenu éliminé
-server2 ansible_host=10.0.0.22
+centos02 ansible_host=10.0.0.22
 # ... contenu éliminé
-server3 ansible_host=10.0.0.31
+ubuntu01 ansible_host=10.0.0.31
 # ... contenu éliminé
-server4 ansible_host=10.0.0.32
+ubuntu02 ansible_host=10.0.0.32
 # ... contenu éliminé
 
 [webservers:vars]
@@ -310,19 +310,19 @@ Output
 {
     "_meta": {
         "hostvars": {
-            "server1": {
+            "centos01": {
                 "ansible_host": "10.0.0.21",
                 "ansible_user": "vagrant"
             },
-            "server2": {
+            "centos02": {
                 "ansible_host": "10.0.0.22",
                 "ansible_user": "vagrant"
             },
-            "server3": {
+            "ubuntu01": {
                 "ansible_host": "10.0.0.31",
                 "ansible_user": "ubuntu"
             },
-            "server4": {
+            "ubuntu02": {
                 "ansible_host": "10.0.0.32",
                 "ansible_user": "ubuntu"
             }
@@ -334,9 +334,11 @@ Output
 Notez que toutes les variables d'inventaire sont répertoriées dans le nœud **_meta**
 dans la sortie JSON produite par `ansible-inventory`.
 
-## Étape 5 - Utilisation de modèles pour cibler l'exécution des commandes et des playbooks
-Lors de l'exécution de commandes et de playbooks avec Ansible, vous devez fournir une cible. Les modèles vous permettent de cibler des hôtes, des groupes ou des sous-groupes spécifiques dans votre fichier d'inventaire. Ils sont très flexibles et prennent en charge les expressions régulières et les caractères génériques.
-
+## Étape 5 - Utilisation de modèles pour cibler l'exécution
+Lors de l'exécution de commandes et de playbooks avec Ansible, vous devez fournir une cible.
+Les modèles vous permettent de cibler des hôtes, des groupes ou des sous-groupes spécifiques
+dans votre fichier d'inventaire. Ils sont très flexibles et prennent en charge les expressions
+régulières et les caractères génériques.
 Considérez le fichier d'inventaire suivant:
 
 ```
@@ -344,16 +346,16 @@ cat hosts
 ```
 ```
 [web_dev]
-server1 ansible_host=10.0.0.21
+centos01 ansible_host=10.0.0.21
 
 [web_prod]
-server2 ansible_host=10.0.0.22
+centos02 ansible_host=10.0.0.22
 
 [db_dev]
-server3 ansible_host=10.0.0.31
+ubuntu01 ansible_host=10.0.0.31
 
 [db_prod]
-server4 ansible_host=10.0.0.32
+ubuntu02 ansible_host=10.0.0.32
 
 [webservers:children]
 web_dev
@@ -378,8 +380,8 @@ ansible_user=vagrant
 ansible_user=ubuntu
 ```
 Imaginons maintenant que vous deviez exécuter une commande ciblant uniquement le(s)
-serveur(s) de base de données qui s'exécutent en production. Dans cet exemple,
-ce critère ne correspond qu'à 10.0.0.32; cependant, il se peut que vous ayez un
+serveur(s) web qui s'exécutent en production. Dans cet exemple,
+ce critère ne correspond qu'à 10.0.0.22; cependant, il se peut que vous ayez un
 grand groupe de serveurs de base de données dans ce groupe. Au lieu de cibler
 individuellement chaque serveur, vous pouvez utiliser le modèle suivant:
 ```shell
@@ -474,5 +476,8 @@ Ajuster les arguments de connexion SSH
 ssh_args = -o ControlMaster=auto -o ControlPersist=60s
 ```
 
+Vérifier l'état de votre configuration avec la commande `ansible-config`:
+```
+ansible-config view | grep inventory
 
 [Next Lab ->](./Lab%202%20-%20Commandes%20Ad-Hoc.md)

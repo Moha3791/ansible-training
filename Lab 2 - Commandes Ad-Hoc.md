@@ -35,16 +35,16 @@ Copiez et collez ce qui suit pour créer un fichier d'inventaire.
 cat > hosts <<EOF
 
 [web_dev]
-server1 ansible_host=10.0.0.21
+centos01 ansible_host=10.0.0.21
 
 [web_prod]
-server2 ansible_host=10.0.0.22
+centos02 ansible_host=10.0.0.22
 
 [db_dev]
-server3 ansible_host=10.0.0.31
+ubuntu01 ansible_host=10.0.0.31
 
 [db_prod]
-server4 ansible_host=10.0.0.32
+ubuntu02 ansible_host=10.0.0.32
 
 [webservers:children]
 web_dev
