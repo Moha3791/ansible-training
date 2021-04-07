@@ -144,7 +144,7 @@ l'hôte a plus de, disons, ***900Mo*** de RAM.
   hosts: all
   become: yes
   tasks:
-  - name: Install latest MariaDB server when host RAM greater 3000 MB
+  - name: Install latest MariaDB server when host RAM greater than 900 MB
     yum:
       name: mariadb-server
       state: latest
@@ -160,7 +160,7 @@ ignorée sur host2.
   hosts: all
   become: yes
   tasks:
-  - name: Install latest MariaDB server when host RAM greater 3000 MB
+  - name: Install latest MariaDB server when host RAM greater than 900 MB
     yum:
       name: mariadb-server
       state: latest
