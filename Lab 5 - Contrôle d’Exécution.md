@@ -148,7 +148,7 @@ l'hôte a plus de, disons, ***900Mo*** de RAM.
     yum:
       name: mariadb-server
       state: latest
-      when: FACT COMPARISON\OPERATOR NUMBER
+    when: FACT COMPARISON\OPERATOR NUMBER
 ```
 Exécutez le Playbook. En conséquence, la tâche d'installation doit être
 ignorée sur host2.
@@ -164,7 +164,7 @@ ignorée sur host2.
     yum:
       name: mariadb-server
       state: latest
-      when: ansible\memtotal\mb > 900
+    when: ansible_memtotal_mb > 900
 ```
 
 # Ansible Handlers
