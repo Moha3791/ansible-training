@@ -18,7 +18,7 @@ fichiers entiers et des playbooks YAML, comme nous le démontrerons plus
 tard. C'est un outil très pratique et convivial qui nécessite le même
 mot de passe lors du cryptage et du décryptage des fichiers.
 
-##créer un fichier chiffré (crypté) dans Ansible
+## Créer un fichier chiffré (crypté) dans Ansible
 
 Si vous souhaitez créer un fichier Playbook chiffré, utilisez simplement
 la commande *ansible-vault create* et indiquez le nom du fichier
@@ -38,7 +38,7 @@ Vous serez ensuite invité à entrer un mot de passe, et après l'avoir
 confirmé, une nouvelle fenêtre s'ouvrira en utilisant l'éditeur vi où
 vous pourrez commencer à écrire vos plays.
 
-![](media/vault1.png){width="5.71875in" height="0.6875in"}
+![](media/vault1.png)
 
 Pour vérifier le cryptage du fichier, utilisez la commande *cat*.
 

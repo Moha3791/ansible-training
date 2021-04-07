@@ -7,7 +7,7 @@ création de fichiers de configuration personnalisés pour plusieurs
 serveurs, mais uniques pour chacun d'entre eux.
 
 Jinja2 utilise les doubles accolades {{ ... }} pour entourer une variable
-qui a été définie. Pour les commentaires, utilisez {{\# \#}} et pour les
+qui a été définie. Pour les commentaires, utilisez {{\# … \#}} et pour les
 instructions conditionnelles, utilisez {% … %}.
 
 Exemple 1
@@ -54,7 +54,7 @@ noms d'hôte et les systèmes d'exploitation respectifs des serveurs Web.
 $ ansible-playbook test_server.yml
 ```
 Rechargeons maintenant les pages Web pour les serveurs Web CentOS 7 et
-Ubuntu .
+Ubuntu.
 
 ### Filtres
 
@@ -68,7 +68,7 @@ apparaître les variables Ansible en majuscules. Pour ce faire, ajoutez
 la valeur upper à la variable. De cette façon, la valeur de la variable
 est convertie au format majuscule.
 
-##### {{ ansible_hostname | upper }} => CENTOS 7
+##### {{ ansible_hostname | upper }} => CENTOS01
 
 ##### {{ ansible_os_family | upper }} => REDHAT
 ```html
@@ -86,7 +86,7 @@ En outre, vous pouvez remplacer une chaîne par une autre.
 
 Par exemple:
 
-Le titre du film est {{ movie_name }} => Le titre du film est Ring .
+Le titre du film est {{ movie_name }} => Le titre du film est Ring.
 
 Pour remplacer la sortie par une autre chaîne, utilisez l'argument
 replace comme indiqué:
@@ -147,4 +147,4 @@ if-else pour filtrer et obtenir certaines valeurs.
 
 
 ---
-[Next Lab ->](./Lab%206%20-%20Ansible%20Roles.md)
+[Next Lab ->](./Lab%207%20-%20Ansible%20Roles.md)

@@ -103,3 +103,68 @@ Développez les détails des utilisateurs en cliquant sur l' onglet Utilisateurs
 1. Cliquez dans le menu déroulant pour sélectionner un ou plusieurs rôles pour cet utilisateur.
 ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-organizations-add-admin-for-example-organization-assign-roles.png)
 1. Une fois terminé, cliquez sur Enregistrer .
+
+## Créez un nouvel inventaire et ajoutez-le à l'organisation
+Un inventaire est un ensemble d'hôtes géré par Tower. Les inventaires sont attribués aux organisations, tandis que les autorisations de lancement de playbooks par rapport aux inventaires sont contrôlées au niveau de l'utilisateur et / ou de l'équipe.
+
+Pour examiner les inventaires existants:
+
+1. Cliquez sur l'icône Inventaires (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/inventories-icon.png)) dans la barre de navigation de gauche.
+
+1. Cliquez sur le bouton ajouter ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/add-button.png) et sélectionnez **Inventaire** dans la liste du menu déroulant. Les inventaires intelligents sont décrits plus en détail dans les inventaires intelligents .
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-inventories-create-new-inventory.png)
+Ansible Tower fournit un inventaire de démonstration que vous pouvez utiliser lorsque vous apprenez comment fonctionne Tower. Cliquez sur le lien «Demo Inventory» pour l'inventaire du stock fourni par Ansible Tower.
+
+###  Groupes et hôtes
+Notez que les inventaires sont divisés en groupes et en hôtes. Un groupe peut représenter un environnement particulier (par exemple «Datacenter 1» ou «Stage Testing»), un type de serveur (par exemple «Serveurs d'applications» ou «Serveurs de base de données»), ou toute autre représentation de votre environnement. Les groupes et hôtes qui appartiennent à l'inventaire de démonstration sont affichés respectivement dans les onglets Groupes et Hôtes .
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-inventories-demo-details.png)
+1. Dans l' onglet Groupes, cliquez sur le bouton Ajouter ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/add-button.png) pour ajouter des groupes à l'inventaire.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-inventories-click-to-create-new-group.png)
+1. De même, dans l' onglet Hôtes , cliquez sur le bouton Ajouter ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/add-button.png) pour ajouter des hôtes aux groupes.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-inventories-click-to-create-new-host.png)
+Pour les besoins de ce Quick Start et pour tester que Tower est correctement configurée, un hôte local a été ajouté pour votre utilisation.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-inventories-host-properties-form.png)
+Cliquez sur **Cancel** (si aucune modification n'a été apportée) ou utilisez les liens de navigation du fil d'Ariane en haut du navigateur Ansible Tower pour revenir à l'écran de présentation des inventaires. Cliquer sur Enregistrer ne quitte pas la boîte de dialogue d'édition.
+
+## Créez un identifiant
+
+Les informations d'identification authentifient l'utilisateur de Tower pour lancer les playbooks Ansible, qui peuvent inclure des mots de passe et des clés SSH, par rapport aux hôtes d'inventaire. Vous pouvez également demander à l'utilisateur de Tower de saisir un mot de passe ou une phrase clé lors du lancement d'un playbook à l'aide de la fonction d'informations d'identification de Tower.
+
+Créez une nouvelle information d'identification en cliquant sur l' icône d'Informations d'identification (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/credentials-icon.png)) dans la barre de navigation de gauche.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-credentials-setup-screen.png)
+Dans le cadre de ce Quick Start, un identifiant de démonstration a été fourni pour votre utilisation.
+
+Cliquez sur le nom du lien «Demo Credential» ou sur le bouton Edit (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/edit-button.png)) pour examiner ou modifier ces informations d'identification.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-credentials-create-new.png)
+
+## Configurer un projet
+Un projet est une collection logique de playbooks Ansible, représentés dans Tower.
+
+Vous pouvez gérer les playbooks et les répertoires de playbooks en les plaçant manuellement sous le chemin de base du projet sur votre serveur Tower, ou en plaçant vos playbooks dans un système de gestion du code source (SCM) pris en charge par Tower, y compris Git, Subversion et Mercurial.
+
+Pour revoir des projets existants ou pour en créer un nouveau, cliquez sur l' icône de Projets (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/projects-icon.png)) dans la barre de navigation de gauche.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-projects-home.png)
+
+Ansible Tower simplifie le processus de démarrage en vous fournissant un projet de démonstration avec lequel travailler initialement.
+
+Cliquez sur le lien du nom «Projet de démonstration» ou cliquez sur le bouton Modifier (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/edit-button.png)) pour passer en revue le projet de stock fourni par Ansible Tower.
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-demo-projects.png)
+Cliquez sur Annuler (si aucune modification n'a été apportée) ou utilisez les liens de navigation du fil d'Ariane en haut du navigateur Ansible Tower pour revenir à l'écran de présentation des inventaires. Cliquer sur Enregistrer ne quitte pas la boîte de dialogue d'édition.
+
+Avant que ce projet puisse être utilisé dans un modèle de travail, vous devez démarrer manuellement une synchronisation SCM pour ce projet. Mettez à jour le projet de démonstration basé sur SCM en cliquant sur le bouton Sync ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/refresh-button.png) sous les actions disponibles du projet:
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-demo-project-sync-icon-hover.png)
+Notez que le point d'état à côté du nom du projet, de la révision et des dernières informations d'exécution est mis à jour une fois la synchronisation terminée.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-demo-proj-sync.png)
+
+## Créez un nouveau Job Template
+
+Un modèle de travail combine un playbook Ansible d'un projet et les paramètres requis pour le lancer. Passez en revue les travaux existants ou créez un nouveau modèle de travail en cliquant sur l'icône Modèles (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/templates-icon.png)) dans la barre de navigation de gauche.
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/job-templates-home-with-example-job-template.png)
+
+Aux fins de ce démarrage rapide, un modèle de tâche de démonstration a été créé pour votre première utilisation.
+
+Cliquez sur le bouton Modifier (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/edit-button.png)) pour consulter le modèle de tâche de stock fourni par Ansible Tower.
+
+![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-job-templates-form.png)
+Cliquez sur Annuler (si aucune modification n'a été apportée) ou utilisez les liens de navigation du fil d'Ariane en haut du navigateur Ansible Tower pour revenir à l'écran de présentation des modèles. Cliquer sur Enregistrer ne quitte pas la boîte de dialogue d'édition.

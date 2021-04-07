@@ -85,7 +85,7 @@ Par exemple, pour rechercher un rôle nommé mysql, exécutez.
 ```
 $ ansible-galaxy search mysql
 ```
-![media/image1.png](media/image1.png){width="6.5in" height="2.445177165354331in"}
+![media/image1.png](media/image1.png)
 
 Comme vous pouvez le voir, il existe des centaines de rôles qui
 correspondent au mot-clé *mysql* . Cependant, tous les rôles
@@ -211,4 +211,4 @@ l'utilisateur en essayant d'écrire beaucoup de code redondant qui aurait
 
 
 ---
-[Next Lab ->](./Lab%206%20-%20Ansible%20Vault.md)
+[Next Lab ->](./Lab%208%20-%20Ansible%20Vault.md)
