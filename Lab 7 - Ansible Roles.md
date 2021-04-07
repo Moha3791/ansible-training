@@ -41,29 +41,117 @@ Comme vous pouvez le voir, plusieurs répertoires ont été créés,
 cependant, ils ne seront pas tous utilisés dans le playbook.
 
 Maintenant, pour utiliser votre nouveau rôle dans un playbook,
-définissez une tâche dans le fichier *main.yml* existant dans le
-répertoire *tasks* de votre nouveau rôle.
+Vous trouverez ci-dessous un exemple de codes de playbook pour déployer le serveur Web Apache.
 ```
-$ cat apache/tasks/main.yml
-```
-```yaml
 ---
-
-- hosts: ubuntu
+- hosts: all
   tasks:
-  - name: Install Apache2 on Ubuntu webserver
-    apt:
-      name: apache2
-      state: installed
+  - name: Install httpd Package
+    yum: name=httpd state=latest
+  - name: Copy httpd configuration file
+    copy: src=/data/httpd.original dest=/etc/httpd/conf/httpd.conf
+  - name: Copy index.html file
+    copy: src=/data/index.html dest=/var/www/html
+    notify:
+    - restart apache
+  - name: Start and Enable httpd service
+    service: name=httpd state=restarted enabled=yes
+  handlers:
+  - name: restart apache
+    service: name=httpd state=restarted
 ```
-Ensuite, créez un fichier de playbook et invoquez le rôle apache.
+Accédez au répertoire `apache` et éditez votre rôle:
+1. Tasks:
+Editez main.yml disponible dans le dossier des tâches pour définir les tâches à exécuter.
+```
+vi tasks/main.yml
+```
 ```yaml
 ---
-
-- hosts: ubuntu
-  roles:
-    - apache
+- name: Install httpd Package
+  yum: name=httpd state=latest
+- name: Copy httpd configuration file
+  copy: src=/data/httpd.original dest=/etc/httpd/conf/httpd.conf
+- name: Copy index.html file
+  copy: src=/data/index.html dest=/var/www/html
+  notify:
+  - restart apache
+- name: Start and Enable httpd service
+  service: name=httpd state=restarted enabled=yes
 ```
+Au total, vous pouvez ajouter toutes vos tâches dans ce fichier ou simplement casser les codes encore plus comme ci-dessous en utilisant des instructions **import_tasks**.
+```
+cat tasks/main.yml
+```
+```yaml
+---
+# tasks file for apache
+- import_tasks: install.yml
+- import_tasks: configure.yml
+- import_tasks: service.yml
+```
+* install.yml
+```
+cat tasks/install.yml
+```
+```YAML
+---
+- name: Install httpd Package
+  yum: name=httpd state=latest
+```
+* configure.yml
+```
+cat tasks/configure.yml
+```
+```yaml
+---
+- name: Copy httpd configuration file
+  copy: src=files/httpd.conf dest=/etc/httpd/conf/httpd.conf
+- name: Copy index.html file
+  copy: src=files/index.html dest=/var/www/html
+  notify:
+  - restart apache
+```
+* service.yml
+```
+cat tasks/service.yml
+```
+```yaml
+---
+- name: Start and Enable httpd service
+  service: name=httpd state=restarted enabled=yes
+```
+
+2. Files
+Copiez les fichiers requis (httpd.conf et index.html) dans le répertoire des fichiers.
+
+3. Handlers
+Modifiez **main.yml** du handlers  pour redémarrer le serveur en cas de modification.
+Parce que nous l'avons déjà défini dans les tâches avec l'option `notify`.
+Utilisez le même nom "`restart apache`" dans le fichier main.yml que ci-dessous.
+```
+cat handlers/main.yml
+```
+```yaml
+---
+# handlers file for apache
+- name: restart apache
+  service: name=httpd state=restarted
+```
+
+Nous avons tous les fichiers requis pour le rôle Apache.
+Essayons d'appliquer ce rôle dans le playbook "install_apache.yml" comme ci-dessous pour le déployer sur les nœuds clients.
+```
+cat install_apache.yml
+```
+```YAML
+---
+- hosts: webservers
+  become: yes
+  roles:
+  - apache
+```
+
 ### Installer un rôle depuis Ansible Galaxy
 
 Ansible Roles jouent un rôle crucial dans le partage de code avec
@@ -119,7 +207,7 @@ Le rôle peut ensuite être appelé dans un playbook, par exemple:
 ```yaml
 ---
 - name: Install MySQL server
-  hosts: webservers
+  hosts: dbservers
   roles:
   - 5KYDEV0P5.skydevops-mysql
 ```
@@ -154,7 +242,7 @@ exemple.
 ---
 
 - name: Install MySQL server
-  hosts: webservers
+  hosts: dbservers
   roles:
   - 5KYDEV0P5.skydevops-mysql
   - Aaronpederson.mariadb

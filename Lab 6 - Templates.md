@@ -23,7 +23,7 @@ changer de contenu selon le système d’exploitation.
 Créons donc un playbook *test_server.yml* comme indiqué:
 ```yaml
 ---
-- hosts: all
+- hosts: webservers
   become: yes
   tasks:
   - name: Install index.html
@@ -41,8 +41,9 @@ Créons maintenant le fichier modèle `index.html.j2`.
 ```Jinja2
 <html>
   <center>
-    <h1> The hostname of this webserver is {{ ansible_hostname> }}</h1>
+    <h1> The hostname of this webserver is {{ ansible_hostname }}</h1>
     <h3> It is running on {{ ansible_os_family }} system </h3>
+    <p> this is a {{ stage }} server </p>
   </center>
 </html>
 ```
@@ -76,6 +77,7 @@ est convertie au format majuscule.
   <center>
     <h1> The hostname of this webserver is {{ ansible_hostname | upper }}</h1>
     <h3> It is running on {{ ansible_os_family | upper }} system </h3>
+    <p> this is a {{ stage | upper }} server </p>
   </center>
 </html>
 ```
@@ -91,13 +93,18 @@ Le titre du film est {{ movie_name }} => Le titre du film est Ring.
 Pour remplacer la sortie par une autre chaîne, utilisez l'argument
 replace comme indiqué:
 
-Le titre du film est {{ movie_name | replace (“Ring“,”Heist”) }} =>
+Le titre du film est {{ movie_name | replace (“prod“,”Production”) }} =>
 Le titre du film est Heist .
+
+Changez le modèle J2 pour remplacer prod par Production et dev par Development.
+```
+this is a {{ stage | replace (“prod“,”Production”) | replace (“dev“,”Development”) }} server
+```
 
 ### Exemple 3: répertorie et définit les filtres
 
 Pour récupérer la plus petite valeur d'un tableau, utilisez le filtre
-min .
+min.
 
 {{ \[2, 3, 4, 5, 6, 7\] | min }} => 2
 

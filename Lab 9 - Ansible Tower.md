@@ -111,7 +111,7 @@ Pour examiner les inventaires existants:
 
 1. Cliquez sur l'icône Inventaires (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/inventories-icon.png)) dans la barre de navigation de gauche.
 
-1. Cliquez sur le bouton ajouter ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/add-button.png) et sélectionnez **Inventaire** dans la liste du menu déroulant. Les inventaires intelligents sont décrits plus en détail dans les inventaires intelligents .
+1. Cliquez sur le bouton ajouter ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/add-button.png) et sélectionnez **Inventaire** dans la liste du menu déroulant.
 ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-inventories-create-new-inventory.png)
 Ansible Tower fournit un inventaire de démonstration que vous pouvez utiliser lorsque vous apprenez comment fonctionne Tower. Cliquez sur le lien «Demo Inventory» pour l'inventaire du stock fourni par Ansible Tower.
 
@@ -150,21 +150,29 @@ Ansible Tower simplifie le processus de démarrage en vous fournissant un projet
 Cliquez sur le lien du nom «Projet de démonstration» ou cliquez sur le bouton Modifier (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/edit-button.png)) pour passer en revue le projet de stock fourni par Ansible Tower.
 
 ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-demo-projects.png)
-Cliquez sur Annuler (si aucune modification n'a été apportée) ou utilisez les liens de navigation du fil d'Ariane en haut du navigateur Ansible Tower pour revenir à l'écran de présentation des inventaires. Cliquer sur Enregistrer ne quitte pas la boîte de dialogue d'édition.
+Cliquez sur Annuler (si aucune modification n'a été apportée) ou utilisez les liens de navigation du fil d'Ariane en haut du navigateur Ansible Tower pour revenir à l'écran de présentation des projets. Cliquer sur Enregistrer ne quitte pas la boîte de dialogue d'édition.
 
-Avant que ce projet puisse être utilisé dans un modèle de travail, vous devez démarrer manuellement une synchronisation SCM pour ce projet. Mettez à jour le projet de démonstration basé sur SCM en cliquant sur le bouton Sync ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/refresh-button.png) sous les actions disponibles du projet:
+Avant que ce projet puisse être utilisé dans un template, vous devez démarrer manuellement une synchronisation SCM pour ce projet. Mettez à jour le projet de démonstration basé sur SCM en cliquant sur le bouton Sync ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/refresh-button.png) sous les actions disponibles du projet:
 ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-demo-project-sync-icon-hover.png)
 Notez que le point d'état à côté du nom du projet, de la révision et des dernières informations d'exécution est mis à jour une fois la synchronisation terminée.
 ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-demo-proj-sync.png)
 
 ## Créez un nouveau Job Template
 
-Un modèle de travail combine un playbook Ansible d'un projet et les paramètres requis pour le lancer. Passez en revue les travaux existants ou créez un nouveau modèle de travail en cliquant sur l'icône Modèles (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/templates-icon.png)) dans la barre de navigation de gauche.
+Un Job Template combine un playbook Ansible d'un projet et les paramètres requis pour le lancer. Passez en revue les travaux existants ou créez un nouveau Job Template en cliquant sur l'icône Modèles (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/templates-icon.png)) dans la barre de navigation de gauche.
 ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/job-templates-home-with-example-job-template.png)
 
-Aux fins de ce démarrage rapide, un modèle de tâche de démonstration a été créé pour votre première utilisation.
+Un modèle de tâche de démonstration a été créé pour votre première utilisation.
 
-Cliquez sur le bouton Modifier (![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/edit-button.png)) pour consulter le modèle de tâche de stock fourni par Ansible Tower.
+Cliquez sur le nom du template pour le consulter.
 
 ![](https://docs.ansible.com/ansible-tower/latest/html/quickstart/_images/qs-job-templates-form.png)
 Cliquez sur Annuler (si aucune modification n'a été apportée) ou utilisez les liens de navigation du fil d'Ariane en haut du navigateur Ansible Tower pour revenir à l'écran de présentation des modèles. Cliquer sur Enregistrer ne quitte pas la boîte de dialogue d'édition.
+
+## Challenge lab:
+
+Utilisez Tower pour exécuter les playbooks créés dans les labs précédents.
+1. Créez l'inventaire
+1. Créez un projet à partir du répo git https://github.com/benbahri/ansible-training-playbooks.git
+1. Créez un template par playbook
+1. Executer les jobs
