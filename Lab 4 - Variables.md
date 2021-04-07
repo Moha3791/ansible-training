@@ -207,7 +207,7 @@ stage: prod
 service: httpd
 ```
 ```
-[master]$ cat group_vars/webserver
+[master]$ cat group_vars/webservers
 
 ---
 stage: dev
@@ -223,9 +223,9 @@ service: sshd
   tasks:
   - name: Check service is enabled and started
     service:
-    name: "{{ service }}"
-    enabled: true
-    state: started
+      name: "{{ service }}"
+      enabled: true
+      state: started
 ```
 ```
 [master]$ ansible-playbook check_service.yml -v
