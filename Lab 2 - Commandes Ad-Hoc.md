@@ -27,7 +27,7 @@ forks = 5
 gathering = explicit
 [ssh_connection]
 pipelining = True
-ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s -o
+ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s
 EOF
 ```
 Copiez et collez ce qui suit pour créer un fichier d'inventaire.
