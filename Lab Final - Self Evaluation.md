@@ -2,7 +2,7 @@ Evaluation
 ===
 
 Vous trouvez les étapes d'installation et de configuration d'un serveur **tomcat**
-sur Ubuntu dans le lien suivant: []()
+sur Ubuntu dans le lien suivant: [Installation de Tomcat](Exercices/tomcat.md)
 
 On vous demande de créer et exécuter un playbook qui reproduit les étapes décrites dans ce document.
 
