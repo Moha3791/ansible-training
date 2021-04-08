@@ -138,3 +138,6 @@ l'exécution comme indiqué.
 ```
 $ ansible-playbook deploy.yml --vault-password-file vault_pass.txt
 ```
+
+---
+[Next Lab ->](./Lab%209%20-%20Ansible%20Tower.md)
